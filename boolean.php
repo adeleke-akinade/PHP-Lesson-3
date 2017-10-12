@@ -1,67 +1,68 @@
 <?php
 
+require 'menu.php';
+require 'helpers.php';
+
 function loose_comparison($value) {
-  print '<p>Loose comparison: ';
   if ($value) {
-    print '$value is true.';
+    $result = '$value is true.';
   }
   else {
-    print '$value is false.';
+    $result = '$value is false.';
   }
-  print '</p>';
+  display_value('p', 'Loose comparison: ' . $result);
 }
 
 function strong_comparison($value) {
-  print '<p>Strong comparison: ';
   if ($value === TRUE) {
-    print '$value is true.';
+    $result = '$value is true.';
   }
   elseif($value === FALSE) {
-    print '$value is false.';
+    $result = '$value is false.';
   }
   else {
-    print '$value is of type ' . gettype($value);
+    $result = '$value is of type <i>' . gettype($value) . '</i>';
   }
-  print '</p>';
+  display_value('p', 'Strong comparison: ' . $result);
 }
 
 function type_cast_to_boolean($value) {
-  var_dump($value);
   if ((bool) $value) {
-    print ' casts to TRUE';
+    display_value('p', 'casts to TRUE');
   }
   else {
-    print ' casts to FALSE';
+    display_value('p', 'casts to FALSE');
   }
 }
 
-print '<h3>TRUE and FALSE</h3>';
+display_value('h3', 'TRUE and FALSE');
 loose_comparison(TRUE);
 loose_comparison(FALSE);
 
 strong_comparison(TRUE);
 strong_comparison(FALSE);
+strong_comparison('Neither');
 
 // Example of expressions that evaluate to TRUE or FALSE.
-print '<h3>Expression that evaluate to TRUE or FALSE</h3>';
+display_value('h3', 'Expression that evaluate to TRUE or FALSE');
 $date_time = getdate();
 $current_hour_of_the_day = $date_time['hours'];
 if ($current_hour_of_the_day < 12) {
-  print '<p>Good morning.</p>';
+  display_value('p', 'Good morning.');
+
 }
 else {
-  print '<p>Good afternoon.</p>';
+  display_value('p', 'Good afternoon.');
 }
 
-print '<h3>0 and 1</h3>';
+display_value('h3', '0 and 1');
 loose_comparison(0);
 loose_comparison(1);
 
 strong_comparison(0);
 strong_comparison(1);
 
-
-print "<h3>'0' and '1'</h3>";
+display_value('h3', "'0' and '1'");
 loose_comparison('0');
 loose_comparison('1');
 
@@ -69,7 +70,7 @@ strong_comparison('0');
 strong_comparison('1');
 
 // Type casting to boolean.
-print '<h3>Type casting.</h3>';
+display_value('h3', "Type casting.");
 type_cast_to_boolean("");
 type_cast_to_boolean(NULL);
 type_cast_to_boolean(0);

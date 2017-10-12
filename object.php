@@ -1,5 +1,8 @@
 <?php
 
+require 'menu.php';
+require 'helpers.php';
+
 // Class definition.
 class ExampleClass {
   public $public_var; // Public variables is accessible anywhere.
@@ -20,7 +23,7 @@ class ExampleClass {
   }
 
   public function displayVariable() {
-    print '<p>' . $this->public_var . '</p>';
+    display_value('p', $this->public_var);
   }
 }
 
@@ -41,12 +44,12 @@ class ExtendedExampleClass extends ExampleClass {
   }
 
   public function displayVariable() {
-    print '<p>' . $this->protected_var . '</p>';
+    display_value('p', $this->protected_var);
   }
 }
 
 // To create an object you must instantiate a class.
-print '<h3>Example class</h3>';
+display_value('h3', 'Example class');
 $example_class = new ExampleClass('Initial value');
 var_dump($example_class);
 $example_class->displayVariable();
@@ -54,7 +57,7 @@ $example_class->setVariable('New value');
 $example_class->displayVariable();
 $var = $example_class->getVariable();
 
-print '<h3>Extended Example class</h3>';
+display_value('h3', 'Extended Example class');
 $extended_example_class = new ExtendedExampleClass();
 var_dump($extended_example_class);
 $extended_example_class->displayVariable();
@@ -68,27 +71,26 @@ $var = $extended_example_class->getVariable();
 
 // When you instantiate a class, the __construct method is executed.
 // If the class's constructor method has arguments without default values then you must use parenthesis when instantiating
-// the class as to pass it the required variables. Otherwise the parenthesis is optional.
+// the class as to pass it the required variables. Otherwise the parenthesis can be omitted.
 $class_with_required_variables = new ExampleClass('Initial value'); // Requires argument so must have parenthesis.
 var_dump($class_with_required_variables);
 $class_with_required_variables = new ExtendedExampleClass; // Does not require an argument so parenthesis can be omitted.
 var_dump($class_with_required_variables);
 
-
 // You can create an empty object using PHP's built in stdClass.
-print '<h3>Empty object</h3>';
+display_value('h3', 'Empty object');
 $std_class = new stdClass;
 var_dump($std_class);
 
 // If any type, apart from an array or an object, is converted to an object, then it creates an object of type stdClass.
-print '<h3>Object conversion</h3>';
+display_value('h3', 'Object conversion');
 // If a value of NULL is converted to an object then the stdClass created is empty.
-print '<p>Converting NULL to an object.</p>';
+display_value('p', 'Converting NULL to an object.');
 $obj = (object) NULL;
 var_dump($obj);
 
-// If a other value is converted to an object, the object will contain a member variable named scalar containing the value.
-print '<p>Converting a value other than NULL to an object.</p>';
+// If a value other than NULL is converted to an object, the object will contain a member variable named scalar containing the value.
+display_value('p', 'Converting a value other than NULL to an object.');
 $std_class = (object) 'foo';
 var_dump($std_class);
 
@@ -96,15 +98,15 @@ $std_class = (object) TRUE;
 var_dump($std_class);
 
 // If you convert an array to an object then the array keys/values will become properties and corresponding values.
-print '<p>Converting a value other than NULL to an object.</p>';
+display_value('p', 'Converting an array to an object.');
 $array = array(1, 2, 3, 'car' => 'ford');
 $std_class = (object) $array;
 var_dump($std_class);
 
 // To access the properties created from numeric keys, you must iterate through the object properties.
 foreach($std_class as $key => $value) {
-  print '<p>' . $key . ': ' . $value . '</p>';
+  display_value('p', $key . ': ' . $value);
 }
 
 // You can access the properties created from string keys using the property name
-print '<p>' . $std_class->car . '</p>';
+display_value('p', $std_class->car);

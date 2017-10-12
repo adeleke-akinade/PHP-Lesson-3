@@ -1,8 +1,7 @@
 <?php
 
-function print_value($value) {
-  print '<p>' . ($value) . '</p>';
-}
+require 'menu.php';
+require 'helpers.php';
 
 function add_numbers_together($var1, $var2) {
   return $var1 + $var2;
@@ -20,32 +19,30 @@ function substract_number_with_precision($var1, $var2, $precision) {
   return bcsub($var1, $var2, $precision);
 }
 
-print_value(round((0.1+0.7)*10));
-print_value(floor((0.1+0.7)*10));
-print_value((0.1+0.7)*10);
-print_value(gettype((0.1+0.7)*10));
-print_value(add_numbers_together_with_precision(0.1, 0.7, 1)*10);
-print_value(gettype((int) add_numbers_together_with_precision(0.1, 0.7, 1)*10));
+display_value('h3', 'Float types can not be trusted for preciseness.');
+display_value('p', round((0.1+0.7)*10));
+display_value('p', floor((0.1+0.7)*10));
+display_value('p', (0.1+0.7)*10);
+display_value('p', gettype((0.1+0.7)*10));
+display_value('p', add_numbers_together_with_precision(0.1, 0.7, 1)*10);
+display_value('p', gettype(add_numbers_together_with_precision(0.1, 0.7, 1)*10));
 
-$value = 1/3;
-print_value($value);
-print_value($value);
-print_value(gettype(0.1));
-print_value(gettype(1));
-print_value(($value == 1) ? 'true' : ' false');
-
+display_value('h3', 'Add numbers together.');
 $result = add_numbers_together(0.1, 0.2);
-print_value($result);
-print_value(($result == 0.3) ? 'true' : ' false');
+display_value('p', $result);
+display_value('p', ($result == 0.3) ? 'true' : ' false');
 
+display_value('h3', 'Add numbers together with precision.');
 $result = add_numbers_together_with_precision(0.1, 0.2, 1);
-print_value($result);
-print_value(($result == 0.3) ? 'true' : ' false');
+display_value('p', $result);
+display_value('p', ($result == 0.3) ? 'true' : ' false');
 
+display_value('h3', 'Subtract numbers.');
 $result = substract_number(8, 6.4);
-print_value($result);
-print_value(($result == 1.6) ? 'true' : ' false');
+display_value('p', $result);
+display_value('p', ($result == 1.6) ? 'true' : ' false');
 
+display_value('h3', 'Subtract numbers with precision.');
 $result = substract_number_with_precision(8, 6.4, 1);
-print_value($result);
-print_value(($result == 1.6) ? 'true' : ' false');
+display_value('p', $result);
+display_value('p', ($result == 1.6) ? 'true' : ' false');

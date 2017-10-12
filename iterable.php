@@ -1,6 +1,7 @@
 <?php
 
-require_once 'helpers.php';
+require 'menu.php';
+require 'helpers.php';
 
 // Using an iterable parameter type.
 // You can use NULL or an empty array as a default parameter type.
@@ -31,37 +32,8 @@ foreach(bar() as $value) {
   display_value('p', $value);
 }
 
-// Using a generator uses less memory than creating an array and looping through it as the array will be stored in memory
-// where as the generator only needs to create an iterator object and track the current state of the generator internally.
-display_value('h3', 'Using a Generator.');
-function gen($start, $end, $step): iterable {
-  if ($start < $end) {
-    for ($i = $start; $i < $end; $i += $step) {
-      yield $i;
-    }
-  }
-  else {
-    throw new LogicException('Start must be less than end.');
-  }
-}
-
-foreach(gen(1, 8, 1) as $value) {
-  display_value('p', $value);
-}
-
-// A class that implements or extends can broaden method parameters by changing them from array or Travesable to iterable types
-// and can narrow return types from iterable to array or Traversable.
-display_value('h3', 'Traversable.');
-interface Example {
-  public function method(array $array): iterable; // Array argument.
-}
-
-class ExampleImplementation implements Example {
-  public function method(iterable $iterable ): array {
-    // Parameter broadened and return type narrowed.
-  }
-}
-
+// Implementing the IteratorAggregate interface
+display_value('h3', 'Implementing the IteratorAggregate interface.');
 class A implements IteratorAggregate {
   public $var1 = '1';
   public $var2 = '2';
@@ -77,4 +49,52 @@ class A implements IteratorAggregate {
 $obj_a = new A;
 foreach($obj_a as $value) {
   display_value('p', $value);
+}
+
+// Implementing the Iterator interface
+display_value('h3', 'Implementing the Iterator interface.');
+class myIterator implements Iterator {
+  private $position = 0;
+  private $array = array(
+    "first element",
+    "second element",
+    "third element",
+    "fourth element",
+    "last element",
+  );
+
+  public function __construct() {
+    $this->position = 0;
+  }
+
+  public function rewind() {
+    var_dump(__METHOD__);
+    $this->position = 0;
+  }
+
+  public function current() {
+    var_dump(__METHOD__);
+    return $this->array[$this->position];
+  }
+
+  public function key() {
+    var_dump(__METHOD__);
+    return $this->position;
+  }
+
+  public function next() {
+    var_dump(__METHOD__);
+    ++$this->position;
+  }
+
+  public function valid() {
+    var_dump(__METHOD__);
+    return isset($this->array[$this->position]);
+  }
+}
+
+$iterator = new myIterator;
+
+foreach($iterator as $key => $value) {
+  display_value('p', $key . ' => ' . $value);
 }
