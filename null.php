@@ -22,12 +22,23 @@ unset($var3);
 $array = array($var1, '', array(), FALSE, TRUE, 0, '0');
 foreach ($array as $value) {
   if (is_null($value)) {
-    display_value('p', 'is_null: ' . var_export($value, true) . ' is equal to NULL.');
+    display_value('p', 'is_null: ' . var_export($value, true) . ' is equal to NULL and of the same type.');
   }
+  else {
+    display_value('p', 'is_null: ' . var_export($value, true) . ' is not of the same type as NULL.');
+  }
+
   if ($value == NULL) {
     display_value('p', '==: ' . var_export($value, true) . ' is equal to NULL.');
   }
+  else {
+    display_value('p', '==: ' . var_export($value, true) . ' is not equal to NULL.');
+  }
+
   if ($value === NULL) {
     display_value('p', '===: ' . var_export($value, true) . ' is equal to NULL and of the same type.');
+  }
+  else {
+    display_value('p', '===: ' . var_export($value, true) . ' is not of the same type as NULL.');
   }
 }

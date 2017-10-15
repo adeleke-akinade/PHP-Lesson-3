@@ -4,34 +4,34 @@ require 'menu.php';
 require 'helpers.php';
 
 function loose_comparison($value) {
-  if ($value) {
-    $result = '$value is true.';
+  if ($value == TRUE) { // This could be shortened to 'if ($value)' but I used the == for clarity.
+    $result = var_export($value, true) . ' is true.';
   }
   else {
-    $result = '$value is false.';
+    $result = var_export($value, true) . ' is false.';
   }
   display_value('p', 'Loose comparison: ' . $result);
 }
 
 function strong_comparison($value) {
   if ($value === TRUE) {
-    $result = '$value is true.';
+    $result = var_export($value, true) . ' is true.';
   }
   elseif($value === FALSE) {
-    $result = '$value is false.';
+    $result = var_export($value, true) . ' is false.';
   }
   else {
-    $result = '$value is of type <i>' . gettype($value) . '</i>';
+    $result = var_export($value, true) . ' is of type <i>' . gettype($value) . '</i>';
   }
   display_value('p', 'Strong comparison: ' . $result);
 }
 
 function type_cast_to_boolean($value) {
   if ((bool) $value) {
-    display_value('p', 'casts to TRUE');
+    display_value('p', var_export($value, true) . ' casts to TRUE');
   }
   else {
-    display_value('p', 'casts to FALSE');
+    display_value('p', var_export($value, true) . ' casts to FALSE');
   }
 }
 

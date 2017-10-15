@@ -13,14 +13,17 @@ display_value('p', $var);
 $var = 'The number is ' . $number;
 display_value('p', $var);
 
-$var = 'Strings created with single quotes do not interpret escape sequences apart from \' and \\. The remaining are treated as plain text
- Carriage return \r, Horizontal tab \t, vertical tab \v, escape \e, form feed \f, dollar sign \$, double quote \".';
+$var = 'Strings created with single quotes do not interpret escape sequences apart from \' and \\. 
+The remaining are treated as plain text Carriage return \r, Horizontal tab \t, vertical tab \v, 
+escape \e, form feed \f, dollar sign \$, double quote \".';
 display_value('p', $var);
 
 // ********** Double quote syntax **********
 display_value('h3', 'Double quote syntax');
-$var = "Strings created with double quotes interpret escape sequences such as newline \n. This will be on a new line.
- Carriage return \r, Horizontal tab \t, vertical tab \v, escape \e, form feed \f, backslash \\, dollar sign \$, double quote \".";
+$var = "Strings created with double quotes interpret 
+escape sequences such as newline \n. This will be on a new line.
+ Carriage return \r, Horizontal tab \t, vertical tab \v, escape \e, 
+ form feed \f, backslash \\, dollar sign \$, double quote \".";
 display_value('p', $var);
 
 $array = array(1, 2, 3, 'car' => 'Bentley');
@@ -51,7 +54,8 @@ $foo = new foo();
 $var = "When using double quotes you can also parse object properties like so $foo->foo";
 display_value('p', $var);
 
-$var = "Parsing an array inside of an class property requires braces, {$foo->bar[0]}, {$foo->bar[1]}, {$foo->bar[2]}";
+$var = "Parsing an array inside of an class property requires 
+braces, {$foo->bar[0]}, {$foo->bar[1]}, {$foo->bar[2]}";
 display_value('p', $var);
 
 // ********** Heredoc syntax (heredocs behave the same as double quoted strings without the quotes) **********
@@ -89,7 +93,8 @@ Nowdocs behave the same as single quoted strings without the quotes meaning that
 EOT;
 display_value('p', $var);
 $var = <<<'EOT'
-Any variables within this string will not be parsed. $food, $foo->foo, $foo-bar[0] and escape characters such as newline will
+Any variables within this string will not be parsed. $food, $foo->foo, $foo-bar[0] and 
+escape characters such as newline will
 not be interpreted \n \f \v.
 EOT;
 display_value('p', $var);
@@ -108,7 +113,7 @@ WORD: A simple string created using heredoc syntax;
 EOT;
 display_value('p', $var[2]);
 
-$var = <<<EOT
+$var = <<<'EOT'
 WORD: A simple string created using nowdoc syntax;
 EOT;
 display_value('p', $var[3]);
@@ -118,17 +123,17 @@ display_value('h3', 'String conversion');
 // You can convert a value to string using the (string) cast or strval() function. However, string conversion is automatically
 // done when in the scope of an expression where a string is required.
 $var = 1;
-display_value('p', gettype($var));
-display_value('p', gettype((string) $var));
+display_value('p', var_export($var, true) . ': ' . gettype($var));
+display_value('p', var_export((string) $var, true) . ': ' . gettype((string) $var));
 
 // The print function will convert a value to a string meaning the below two instructions are identical.
 print '<p>TRUE converts to: ' . (string) TRUE . '</p>';
-print '<p>TRUE converts to: ' . TRUE . '</p>';
+//print '<p>TRUE converts to: ' . TRUE . '</p>';
 
-// If you use a string in an equation that requires a number, the string will be converted into a number if possible.
-// If a string begins with a valid number then that number is used, otherwise its value is 0. A valid number is one or
-// more digits, optionally preceded by a sign, followed by an optional exponent (the exponent is an 'e' or 'E' followed
-// by one or more digits).
+// If you use a string in an equation that requires a number, the string will be converted
+// into a number if possible. If a string begins with a valid number then that number is used,
+// otherwise its value is 0. A valid number is one or more digits, optionally preceded by a sign,
+// followed by an optional exponent (the exponent is an 'e' or 'E' followed by one or more digits).
 $var = array();
 $var[] = 1 + "10.5";
 $var[] = 1 + "-1.3e3";

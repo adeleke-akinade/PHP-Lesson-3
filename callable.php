@@ -24,7 +24,7 @@ class C {
 
   public function __construct() {
     foreach($this->functions as $function) {
-      call_user_func(array('C', "$function"), 'Inside of: ');
+      call_user_func(array($this, "$function"), 'Inside of: ');
     }
   }
 
