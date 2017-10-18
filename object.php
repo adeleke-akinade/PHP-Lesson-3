@@ -80,8 +80,8 @@ $descendant_example_class->displayProperty();
 $descendant_example_class->setProperty('New value');
 $var = $descendant_example_class->getProperty();
 display_value('p', $var);
-//display_value('p', $child_example_class->protected_property); // This will cause a fatal error.
-//display_value('p', $child_example_class->private_property); // This will cause an undefined property notice.
+//display_value('p', $descendant_example_class->protected_property); // This will cause a fatal error.
+//display_value('p', $descendant_example_class->private_property); // This will cause an undefined property notice.
 
 // When you instantiate a class, the __construct method is executed.
 // If the class's constructor method has arguments without default values then you must use parenthesis when
