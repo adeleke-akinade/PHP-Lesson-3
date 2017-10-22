@@ -1,4 +1,4 @@
-# Learn PHP Programming Lesson 4
+# Learn PHP Programming Lesson 3
 
 This project contains the code mentioned in the 'Learn PHP Programming Lesson 3' tutorial.
 
